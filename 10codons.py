@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Define Varibles
+# Define Variables
 dna = 'ATAGCGAATATCTCTCATGAGAGGGAA'
 s = len(dna)
 
