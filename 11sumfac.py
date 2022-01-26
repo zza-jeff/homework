@@ -6,13 +6,13 @@ n = 5
 
 # Store Outputs
 
-SUM = 0
-FACR = 1
+sum = 0
+facr = 1
 
 # Loop
 
 for i in range(1,n+1):
-    SUM = SUM + i
-    FACR = FACR * i
+    sum = sum + i
+    facr = facr * i
 
-print(n,SUM,FACR)
+print(n,sum,facr)
