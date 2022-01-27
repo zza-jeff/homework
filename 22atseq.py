@@ -9,7 +9,7 @@ import random
 # Calculate the actual AT fraction while generating the sequence
 # Report the length, AT fraction, and sequence
 
-seq = "" # Store sequence
+seq = '' # Store sequence
 nt = 30
 pt = 0 # Store number of AT
 
