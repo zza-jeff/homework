@@ -23,8 +23,6 @@ for i in range(nt):
         seq += 'G'
     else:
         seq += 'C'
-
-for i in range(nt):
     nc = seq[i]
     if nc == 'A' or nc == 'T':
         pt += 1
