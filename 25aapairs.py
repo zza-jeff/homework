@@ -13,7 +13,7 @@ second = ''
 for i in range(19):
     first = aa[i]
     for p in range(i+1, 20, 1):
-        if not p == i: second = aa[p]
+        second = aa[p]
         print(first, second)
 
 com = (1 + 19) * 19 / 2
