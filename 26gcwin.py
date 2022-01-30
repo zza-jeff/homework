@@ -11,7 +11,7 @@ w = 11
 
 for i in range(len(seq)-10):
     pt = 0
-    out = 0 # Put them inside the loop so they will be refreshed.
+    out = 0 # Put them inside the loop so they will be refreshed every cycle.
     wind = seq[i:i + w]
     for x in range(w):
         if wind[x] == 'G' or wind[x] == 'C':
