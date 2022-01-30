@@ -30,3 +30,6 @@ for i in range(0, len(seq) - 10):
             pt += 1
         out = pt / 11
     print(i, wind, '{:.4f}'.format(out))
+
+# Pro: More logical
+# Con: Longer, less easier to code.
