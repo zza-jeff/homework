@@ -13,22 +13,22 @@ w = 11
 pt = 0
 out = 0
 
-wind = seq[0:11] # Initial Slice
+wind = seq[0:w] # Initial Slice
 
 for x in range(w):
     if wind[x] == 'G' or wind[x] == 'C':
         pt += 1
 
 for i in range(0, len(seq) - 10):
-    if i == 0: out = pt / 11 # If i = 0, do nothing.
+    if i == 0: out = pt / w # If i = 0, do nothing.
     else:
         if wind[0] == 'G' or wind[0] == 'C':
             pt -= 1
-        wind = wind[1:11]
+        wind = wind[1:w]
         wind += seq[i+10]
         if wind[10] == 'G' or wind[10] == 'C':
             pt += 1
-        out = pt / 11
+        out = pt / w
     print(i, wind, '{:.4f}'.format(out))
 
 # Pro: More logical
