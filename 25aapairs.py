@@ -6,6 +6,7 @@
 # Also print out how many combinations there are
 
 aa = 'ACDEFGHIKLMNPQRSTVWY'
+count = 0
 
 first = ''
 second = ''
@@ -15,6 +16,6 @@ for i in range(19):
     for p in range(i+1, 20, 1):
         second = aa[p]
         print(first, second)
+        count += 1
 
-com = (1 + 19) * 19 / 2
-print(f'{com:.0f}')
+print(f'{count:.0f}')

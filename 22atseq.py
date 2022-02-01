@@ -11,7 +11,7 @@ import random
 
 seq = '' # Store sequence
 nt = 30
-pt = 0 # Store number of AT
+at = 0 # Store number of AT
 
 for i in range(nt):
     r = random.randint(1, 4)
@@ -25,7 +25,7 @@ for i in range(nt):
         seq += 'C'
     nc = seq[i]
     if nc == 'A' or nc == 'T':
-        pt += 1
-    out = pt / nt # Store AT fraction
+        at += 1
+    out = at / nt # Store AT fraction
 
 print(nt, out, seq)

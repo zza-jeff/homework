@@ -9,12 +9,12 @@ seq = 'ACGACGCAGGAGGAGAGTTTCAGAGATCACGAATACATCCATATTACCCAGAGAGAG'
 w = 11
 
 
-for i in range(len(seq)-10):
-    pt = 0
+for i in range(len(seq) - w + 1):
+    gc = 0
     out = 0 # Put them inside the loop so they will be refreshed every cycle.
     wind = seq[i:i + w]
     for x in range(w):
         if wind[x] == 'G' or wind[x] == 'C':
-            pt += 1
-            out = pt / 11
+            gc += 1
+            out = gc / w
     print(i, wind, f'{out:.4f}')

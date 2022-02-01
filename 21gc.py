@@ -7,15 +7,15 @@
 dna = 'ACAGAGCCAGCAGATATACAGCAGATACTAT' # feel free to change
 
 
-pt = 0 # Number of GC
+gc = 0 # Number of GC
 st = len(dna)
 
 for i in range(st):
     nc = dna[i]
     if nc == 'G' or nc == 'C':
-        pt += 1
+        gc += 1
 
-out = pt / st # Output
+out = gc / st # Output
 
 # Method 1 - Old-school
 print('%.2f' % (out))
