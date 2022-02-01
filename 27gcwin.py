@@ -19,14 +19,14 @@ for x in range(w):
     if wind[x] == 'G' or wind[x] == 'C':
         pt += 1
 
-for i in range(0, len(seq) - 10):
+for i in range(0, len(seq) - w + 1):
     if i == 0: out = pt / w # If i = 0, do nothing.
     else:
         if wind[0] == 'G' or wind[0] == 'C':
             pt -= 1
         wind = wind[1:w]
-        wind += seq[i+10]
-        if wind[10] == 'G' or wind[10] == 'C':
+        wind += seq[i + w - 1]
+        if wind[w - 1] == 'G' or wind[w - 1] == 'C':
             pt += 1
         out = pt / w
     print(i, wind, '{:.4f}'.format(out))
