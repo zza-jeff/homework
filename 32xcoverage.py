@@ -33,7 +33,7 @@ for y in range(read):
     for z in range(start, start + length):
         coverage1[z] += 1
 
-coverage2 = coverage1[10:size - 10] # ignore first and last 10 base
+coverage2 = coverage1[50:size - 50] # ignore first and last 50 bases
 coverage2.sort()
 min = coverage2[0]
 max = coverage2[len(coverage2) - 1]
