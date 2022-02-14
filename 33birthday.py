@@ -22,7 +22,7 @@ trial = 10000
 for i in range(trial):
     calendar = [0] * 365
     for x in range(people):
-        birth = random.randint(1, 365)
+        birth = random.randint(1, len(calendar))
         calendar[birth - 1] += 1
     if calendar.count(1) < people: same += 1
 
