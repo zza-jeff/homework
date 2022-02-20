@@ -57,23 +57,23 @@ def kd(seq): # calculate hydrophobicity score
         elif a == 'K': score.append(-3.9)
         elif a == 'R': score.append(-4.5)
 
-def helix(score):
-    sp = 0
-    hr = 0
-    phobic = 0
-    slice = []
-    for b in range(len(score) - 11):
+def helix(score, s, threshold1, h, threshold2):
+    sp = 0 # sp = signal peptide
+    hr = 0 # hr = hydrophobic regions
+    phobic = 0 # total KD score
+    slice = [] # slice the transmembrane window from score
+    for b in range(len(score) - h):
         if b <= 22:
-            slice = score[b:b+8]
-            if slice.count('P') == 0:
-                phobic = sum(score[b:b+8])
-                if phobic > 2.5 * 8: sp += 1
+            slice = score[b:b+s]
+            if slice.count(-1.6) == 0: # if no Proline, do following:
+                phobic = sum(score[b:b+s])
+                if phobic > threshold1 * s: sp += 1
 
         if b > 30:
-            slice = score[b:b+11]
-            if slice.count('P') == 0:
-                phobic = sum(score[b:b+11])
-                if phobic > 2.0 * 11: hr += 1
+            slice = score[b:b+h]
+            if slice.count(-1.6) == 0:
+                phobic = sum(score[b:b+h])
+                if phobic > threshold2 * h: hr += 1
 
     if sp >= 1 and hr >= 1: print(id[i])
 
@@ -83,4 +83,4 @@ for i in range(len(id)):
     seq = aachain[i]
     score = []
     kd(seq)
-    helix(score)
+    helix(score, 8, 2.5, 11, 2.0)
