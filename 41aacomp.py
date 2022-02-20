@@ -35,11 +35,10 @@ def compos(seq):
     v = seq.count('V')
     w = seq.count('W')
     y = seq.count('Y')
-    return w, c, h, m, y, q, f, n ,p ,t, r, i, d, g, a, k, e, v, l , s
+    return w, c, h, m, y, q, f, n ,p ,t, r, i, d, g, a, k, e, v, l, s
 
 pro = compos(seq)
 comp = [pro[i] / sum(pro) for i in range(len(aa))]
-
 
 for (amino, num, per) in zip(aa, pro, comp):
     print(amino, num, per)
