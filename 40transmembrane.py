@@ -63,7 +63,7 @@ def helix(score, s, threshold1, h, threshold2):
     phobic = 0 # total KD score
     slice = [] # slice the transmembrane window from score
     for b in range(len(score) - h):
-        if b <= 22:
+        if b <= 30 - s:
             slice = score[b:b+s]
             if slice.count(-1.6) == 0: # if no Proline, do following:
                 phobic = sum(score[b:b+s])
