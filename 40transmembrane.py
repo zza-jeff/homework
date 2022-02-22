@@ -16,13 +16,13 @@ import sys
 #   Create a function for KD calculation
 #   Create a function for amphipathic alpha-helix
 
-aa = 'ACDEFGHIKLMNPQRSTVWY'
-seq = ''
+
 aachain = []
 id = []
 
 
 with open(sys.argv[1], 'r') as fp:
+    seq = ''
     for line in fp:
         if line[0] == '>':
             id.append(line[1:12]) # store sequence id and amino acid chain separately
