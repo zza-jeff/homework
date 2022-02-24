@@ -23,8 +23,7 @@ with open(filename, 'r') as fp:
 for i in range(len(seq) - k + 1):
     kmer = seq[i:i+k]
     if kmer not in count:
-        count[kmer] = 0
-        count[kmer] += 1
+        count[kmer] = 1
         total += 1
     else:
         count[kmer] += 1
