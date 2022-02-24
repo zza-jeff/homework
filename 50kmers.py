@@ -21,13 +21,13 @@ with open(filename, 'r') as fp:
             seq += line.rstrip('\n')
 
 for i in range(len(seq) - k + 1):
-    slice = seq[i:i+k]
-    if slice not in count:
-        count[slice] = 0
-        count[slice] += 1
+    kmer = seq[i:i+k]
+    if kmer not in count:
+        count[kmer] = 0
+        count[kmer] += 1
         total += 1
     else:
-        count[slice] += 1
+        count[kmer] += 1
         total += 1
 
 for x, y in sorted(count.items(), key=lambda item: item[0]):
