@@ -3,6 +3,7 @@
 
 import re
 import sys
+assert(len(sys.argv) == 3)
 
 # Write a program that performs an EcoRI digest on the SARS-COV2 genome
 # The program should have 2 arguments
