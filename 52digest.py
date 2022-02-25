@@ -22,7 +22,6 @@ with open(filename, 'r') as fp:
     for line in fp.readlines():
         match = re.search(extract, line)
         if match: seq += match.group()
-    fp.close()
 
 seq = seq.split()
 for i in range(len(seq)):
