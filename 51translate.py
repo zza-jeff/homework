@@ -37,11 +37,12 @@ with open(filename, 'r') as fp:
 
 seq = seq.upper()
 
-def translate(seq):
+def translate(seq, start = 0):
 	aachain = ''
-	for i in range(0, len(seq) - 2, 3):
+	for i in range(start, len(seq) - 2, 3):
 		frame = seq[i:i+3]
 		if frame in gcode: aachain += gcode[frame]
+		else: aachain += '*' # if not in the genetic code, print '*'
 	return aachain
 
-print(translate(seq))
+print(translate(seq, start = 0)) # 720th nucleotide is a "Y," so one '*' at position 80.
