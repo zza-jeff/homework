@@ -31,7 +31,7 @@ for i in range(len(seq)):
 site.append(0)
 for cut in re.finditer(pattern, seq1):
     site.append(cut.start())
-site.append(len(seq1))
+site.append(len(seq1)) # n cut sites should result in n+1 fragments
 
 for x in range(len(site) - 1):
     print(site[x+1] - site[x])
