@@ -16,7 +16,7 @@ import mcb185
 # Use the mcb185.read_fasta() function
 # Put more functions in your mcb185.py library
 
-parser = argparse.ArgumentParser(description='Brief description of program.')
+parser = argparse.ArgumentParser(description='Output FASTA format with low entropy masking')
 parser.add_argument('--f', required=True, type=str,
 	metavar='<str>', help='require a string for file')
 parser.add_argument('--w', required=True, type=int,
@@ -28,7 +28,7 @@ arg = parser.parse_args()
 for name, seq in mcb185.read_fasta(arg.f):
     for i in range(0, len(seq) - arg.w + 1):
         window = seq[i:i+arg.w]
-        num = mcb185.compos(window)
-        if mcb185.shannon(num) < arg.e:
+        prob = mcb185.compos(window)
+        if mcb185.shannon(prob) < arg.e:
         	seq = seq.replace(window, window.lower())
     print(f'{name}\n{seq}')
