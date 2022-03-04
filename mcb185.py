@@ -33,7 +33,7 @@ def read_fasta(filename):
 
 # def other functions...
 
-def compos(seq):
+def compos(seq): # this function was created in consultation with Dr. Korf
 	count = {}
 	total = 0
 	for c in seq:
