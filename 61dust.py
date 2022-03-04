@@ -17,18 +17,18 @@ import mcb185
 # Put more functions in your mcb185.py library
 
 parser = argparse.ArgumentParser(description='Brief description of program.')
-parser.add_argument('--r1', required=True, type=str,
-	metavar='<str>', help='require a string')
-parser.add_argument('--r2', required=True, type=int,
-	metavar='<int>', help='require integer')
-parser.add_argument('--r3', required=True, type=float,
-	metavar='<float>', help='require floating point')
+parser.add_argument('--f', required=True, type=str,
+	metavar='<str>', help='require a string for file')
+parser.add_argument('--w', required=True, type=int,
+	metavar='<int>', help='require integer for window size')
+parser.add_argument('--e', required=True, type=float,
+	metavar='<float>', help='require floating point for entropy threshold')
 arg = parser.parse_args()
 
-for name, seq in mcb185.read_fasta(arg.r1):
-    for i in range(0, len(seq) - arg.r2 + 1, arg.r2):
-        window = seq[i:i+arg.r2]
+for name, seq in mcb185.read_fasta(arg.f):
+    for i in range(0, len(seq) - arg.w + 1):
+        window = seq[i:i+arg.w]
         num = mcb185.compos(window)
-        if mcb185.shannon(num, limit = 20) < arg.r3:
-            seq = seq.replace(window, window.lower())
-    print(name, seq)
+        if mcb185.shannon(num) < arg.e:
+        	seq = seq.replace(window, window.lower())
+    print(f'{name}\n{seq}')
