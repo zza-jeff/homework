@@ -34,31 +34,22 @@ def read_fasta(filename):
 # def other functions...
 
 def compos(seq):
-    a = seq.count('A')
-    c = seq.count('C')
-    d = seq.count('D')
-    e = seq.count('E')
-    f = seq.count('F')
-    g = seq.count('G')
-    h = seq.count('H')
-    i = seq.count('I')
-    k = seq.count('K')
-    l = seq.count('L')
-    m = seq.count('M')
-    n = seq.count('N')
-    p = seq.count('P')
-    q = seq.count('Q')
-    r = seq.count('R')
-    s = seq.count('S')
-    t = seq.count('T')
-    v = seq.count('V')
-    w = seq.count('W')
-    y = seq.count('Y')
-    return a, c, d, e, f, g, h, i, k, l, m, n, p, q, r, s, t, v, w, y
+	count = {}
+	total = 0
+	for c in seq:
+		if c not in count:
+			count[c] = 0
+			count[c] += 1
+			total += 1
+		else:
+			count[c] += 1
+			total += 1
+	freq = {}
+	for c, n in count.items():
+		if c not in freq:
+			freq[c] = n / total
+	return freq
 
-def shannon(num, limit = 20):
-	comp = []
-	entro = []
-	comp = [num[i] / sum(num) for i in range(limit)]
-	entro = [comp[x] * math.log2(comp[x]) for x in range(len(comp)) if comp[x] - 0 > 0.0001]
+def shannon(num):
+	entro = [num[x] * math.log2(num[x]) for x, n in num.items()]
 	return -sum(entro)
