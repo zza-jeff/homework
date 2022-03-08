@@ -16,13 +16,18 @@ arg = parser.parse_args()
 aa = 'ACDEFGHIKLMNPQRSTVWY'
 aachain = []
 nullseq = ''
+result = {}
 
 for i in range(arg.len):
     nullseq += random.choice(aa)
 nullstat = mcb185.compos(nullseq)
 
+
 for name, seq in mcb185.read_fasta(arg.seq):
 	seq = seq.rstrip('*')
 	stat = mcb185.compos(seq)
 	kldiverge = [stat[x] * math.log2(stat[x] / nullstat[x]) for x, n in stat.items()]
-	print(f'{name[0:12]}\n{sum(kldiverge)}')
+	if name not in result: result[name] = sum(kldiverge)
+
+for k, v in sorted(result.items(), key=lambda item:item[1]):
+    print(f'{k}\n{v}')
