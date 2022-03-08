@@ -29,18 +29,18 @@ arg = parser.parse_args()
 
 mask = ''
 for n in range(arg.w):
-	mask += 'N'
+    mask += 'N'
 
 for name, seq in mcb185.read_fasta(arg.f):
 	entropy = {}
 		
 	for i in range(0, len(seq) - arg.w + 1):
-		window = seq[i:i+arg.w]
-		prob = mcb185.compos(window)
-		if i not in entropy: entropy[i] = mcb185.shannon(prob)
+	    window = seq[i:i+arg.w]
+	    prob = mcb185.compos(window)
+	    if i not in entropy: entropy[i] = mcb185.shannon(prob) # store entropy with starting position
 	
 	for c, cal in entropy.items():
-		if entropy[c] < arg.e:
+		if entropy[c] < arg.e: # if below threshold starting at position "c", replace sequence
 			if arg.nmask: seq = seq.replace(seq[c:c+arg.w], mask)
 			else: seq = seq.replace(seq[c:c+arg.w], seq[c:c+arg.w].lower())
 	print(f'{name}\n{seq}')
