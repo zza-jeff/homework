@@ -23,12 +23,23 @@ parser.add_argument('--w', required=True, type=int,
 	metavar='<int>', help='require integer for window size')
 parser.add_argument('--e', required=True, type=float,
 	metavar='<float>', help='require floating point for entropy threshold')
+parser.add_argument('--nmask', action='store_true',
+	help='N-based masking')
 arg = parser.parse_args()
 
+mask = ''
+for n in range(arg.w):
+	mask += 'N'
+print(mask)
+
 for name, seq in mcb185.read_fasta(arg.f):
-    for i in range(0, len(seq) - arg.w + 1):
-        window = seq[i:i+arg.w]
-        prob = mcb185.compos(window)
-        if mcb185.shannon(prob) < arg.e:
-        	seq = seq.replace(window, window.lower())
-    print(f'{name}\n{seq}')
+	entropy = {}	
+	for i in range(0, len(seq) - arg.w + 1):
+		window = seq[i:i+arg.w]
+		prob = mcb185.compos(window)
+		if i not in entropy: entropy[i] = mcb185.shannon(prob)
+	for c, cal in entropy.items():
+		if entropy[c] < arg.e:
+			if arg.nmask: seq = seq.replace(seq[c:c+arg.w], mask)
+			else: seq = seq.replace(seq[c:c+arg.w], seq[c:c+arg.w].lower())
+	print(f'{name}\n{seq}')
