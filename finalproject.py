@@ -19,9 +19,9 @@ nullseq = ''
 result = {}
 
 for i in range(arg.len):
-    nullseq += random.choice(aa)
+    nullseq += random.choice(aa) # picking up a letter from 20 aa each time
 nullstat = mcb185.compos(nullseq)
-
+# so the random sequence is made in a IID process, use as null model
 
 for name, seq in mcb185.read_fasta(arg.seq):
 	seq = seq.rstrip('*')
