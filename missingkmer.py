@@ -10,9 +10,9 @@ parser.add_argument('--seq', required=True, type=str,
 	metavar='<str>', help='require a string to locate the file')
 arg = parser.parse_args()
 
-result = []
-
 for name, seq in mcb185.read_fasta(arg.seq):
+    result = []
+    
     for i in range(len(seq)):
         kmer = {''.join(nt): 0 for nt in itertools.product('ATGC', repeat=i+1)}
         
@@ -26,6 +26,7 @@ for name, seq in mcb185.read_fasta(arg.seq):
         if len(result) != 0:
             result.append(f'{"k="}{i+1}')
             break
-
-for a in range(len(result)):
-    print(result[a])
+    
+    print(name)
+    for a in range(len(result)):
+        print(result[a])
