@@ -14,7 +14,6 @@ parser.add_argument('--len', required=True, type=int,
 arg = parser.parse_args()
 
 aa = 'ACDEFGHIKLMNPQRSTVWY'
-aachain = []
 nullseq = ''
 result = {}
 
@@ -26,8 +25,6 @@ nullstat = mcb185.compos(nullseq)
 for name, seq in mcb185.read_fasta(arg.seq):
 	seq = seq.rstrip('*')
 	stat = mcb185.compos(seq)
-	kldiverge = [stat[x] * math.log2(stat[x] / nullstat[x]) for x, n in stat.items()]
-	if name not in result: result[name] = sum(kldiverge)
-
-for k, v in sorted(result.items(), key=lambda item:item[1]):
-    print(f'{k}\n{v}')
+	kldiverge = {x: stat[x] * math.log(stat[x] / nullstat[x]) for x, n in stat.items()}
+	if name not in result: result[name] = sum(kldiverge.values())
+	print(f'\n{name}\n{result[name]}\n{kldiverge}\n')
