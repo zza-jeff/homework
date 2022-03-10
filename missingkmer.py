@@ -11,7 +11,6 @@ parser.add_argument('--seq', required=True, type=str,
 arg = parser.parse_args()
 
 for name, seq in mcb185.read_fasta(arg.seq):
-    result = []
     
     for i in range(len(seq)):
         kmer = {''.join(nt): 0 for nt in itertools.product('ATGC', repeat=i+1)}
@@ -20,8 +19,7 @@ for name, seq in mcb185.read_fasta(arg.seq):
             frame = seq[b:b+i+1]
             if frame in kmer: kmer[frame] += 1
         
-        for mer, k in kmer.items():
-            if k == 0: result.append(mer)
+        result = [mer for mer, k in kmer.items() if k == 0]
         
         if len(result) != 0:
             result.append(f'{"k="}{i+1}')
